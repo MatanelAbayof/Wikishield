@@ -1,10 +1,15 @@
 from flask import Flask
+import toolforge
+import json
+
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return "Hello!"
+    conn = toolforge.connect('enwiki_p')
+    dbs = conn.query("SHOW TABELS")
+    return json.dumps(dbs)
 
 # ------------------------------------------ start server --------------------------------------------
 if __name__ == '__main__':
