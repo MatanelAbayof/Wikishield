@@ -8,8 +8,11 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def hello():
     conn = toolforge.connect('enwiki_p')
-    dbs = conn.query("SHOW TABELS")
-    return json.dumps(dbs)
+    with conn.cursor() as cur:
+        cur.execute('SHOW TABLES')
+        rows = cur.fetchall()
+        print(rows)
+    return json.dumps(rows)
 
 # ------------------------------------------ start server --------------------------------------------
 if __name__ == '__main__':
