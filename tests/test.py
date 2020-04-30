@@ -19,7 +19,7 @@ with conn.cursor() as cur:
 # run test from venv
 import sys
 import os
-os.getcwd()
 sys.path.append('src')
 os.chdir('src')
+from db.wikishield_connection import DBConnection
 from lang.langs import LangsManager

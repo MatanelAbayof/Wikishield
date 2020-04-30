@@ -15,7 +15,7 @@ class BaseDbConnection(ABC):
         initialize connection 
         """
 
-        self.ctx: Connection = None
+        self.ctx: Connection = None # TODO: fix this (Syntax error in Python 3.5)
 
     def start(self):
         """
