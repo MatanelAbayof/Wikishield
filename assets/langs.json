@@ -1,0 +1,17 @@
+{
+    "langs": [
+        {
+            "name": "en",
+            "undo-rev": "undid revision",
+            "extract-words-regex": "[a-zA-Z]{2,}",
+            "extract-rev-regex": "undid revision (\\d+)"
+        },
+        {
+            "name": "he",
+            "undo-rev": "ביטול גרסה",
+            "extract-words-regex": "[a-zA-Z\u0590-\u05fe]{2,}",
+            "extract-rev-regex": "ביטול גרסה (\\d+)",
+            "filter": "[\u0591-\u05C7]"
+        }
+    ]
+}
