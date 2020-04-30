@@ -13,3 +13,13 @@ with conn.cursor() as cur:
     cur.execute('SHOW DATABASES')
     rows = cur.fetchall()
     print(rows)
+
+
+
+# run test from venv
+import sys
+import os
+os.getcwd()
+sys.path.append('src')
+os.chdir('src')
+from lang.langs import LangsManager
