@@ -26,6 +26,14 @@ from lang.langs import LangsManager, Lang
 lm = LangsManager()
 lang = lm.get_lang('en')
 
+from wiki_api.wikimedia_api import WikimediaApi
+wapi = WikimediaApi(lang)
+diff_text, page_title = wapi.fetch_rev_diff(324651969, 324548952)
+print(diff_text)
+
+from utils.algorithms import extract_added_words
+extract_added_words(lang, diff_text)
+
 
 
 wd = WD(sql_user_name, lang)
