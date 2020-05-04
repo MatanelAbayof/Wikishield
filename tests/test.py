@@ -25,6 +25,9 @@ sql_user_name = read_sql_user_name()
 from lang.langs import LangsManager, Lang
 lm = LangsManager()
 lang = lm.get_lang('en')
+
+
+
 wd = WD(sql_user_name, lang)
 wd._connect()
 from db.wikimedia_db import WikimediaDB

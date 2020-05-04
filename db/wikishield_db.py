@@ -24,8 +24,8 @@ class WikishieldDB(BaseDB):
         """
 
         super().__init__(ctx, lang)
-        #TODO: self.set_safe_updates(safe=False)  # need this for delete
-        self.set_max_allowed_packet()
+        self.set_safe_updates(safe=False)  # need this for delete
+        #TODO: self.set_max_allowed_packet()
         self.sql_user_name = sql_user_name
 
     @property
