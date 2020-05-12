@@ -56,6 +56,8 @@ wsb = WikishieldDB(ws.ctx, lang, sql_user_name)
 revs = wsb.fetch_training_set(300)
 print(revs)
 
+wsb.delete_empty_revs()
+
 
 
 
