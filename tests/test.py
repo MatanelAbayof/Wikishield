@@ -26,6 +26,12 @@ from lang.langs import LangsManager, Lang
 lm = LangsManager()
 lang = lm.get_lang('en')
 
+
+import db.connections_manager as cm
+ws, wd = cm.open_connections(lang)
+
+
+
 from wiki_api.wikimedia_api import WikimediaApi
 wapi = WikimediaApi(lang)
 diff_text, page_title = wapi.fetch_rev_diff(324651969, 324548952)
@@ -42,6 +48,12 @@ from db.wikimedia_db import WikimediaDB
 wdb = WikimediaDB(wd.ctx, lang)
 revs = wdb.fetch_training_revs(10)
 print(revs)
+
+from clf.wiki_classifier import WikiClassifier
+wc = WikiClassifier(lang, ws.ctx)
+wc.learn(1000)
+rev_text = 'Hello World'
+wc.score_rev(rev_text)
 
 
 
