@@ -53,7 +53,7 @@ ws = WS(sql_user_name)
 ws._connect()
 from db.wikishield_db import WikishieldDB
 wsb = WikishieldDB(ws.ctx, lang, sql_user_name)
-revs = wsb.fetch_training_set()
+revs = wsb.fetch_training_set(300)
 print(revs)
 
 

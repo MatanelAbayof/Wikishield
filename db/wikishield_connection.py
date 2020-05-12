@@ -1,5 +1,7 @@
 import toolforge
 from db.db_connection import BaseDbConnection
+import pymysql
+from pymysql.constants import FIELD_TYPE
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -28,5 +30,10 @@ class DBConnection(BaseDbConnection):
         connect to DB
         """
 
-        args = { 'host': self._HOST }
+
+        orig_conv = pymysql.converters.conversions
+        #Adding support for bit data type
+        orig_conv[FIELD_TYPE.BIT] = lambda data: data == b'\x01'
+
+        args = { 'host': self._HOST, 'conv': orig_conv }
         self.ctx = toolforge.connect(self._get_db_name(), **args) 
