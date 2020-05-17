@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Score revision">
+  <meta name="keywords" content="score,revision,Wikishield">
+  <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {% include 'libs.html' %}
+  <title>Score a revision text</title>
+  <!-- includes local CSS-->
+  <link rel="stylesheet" href="css/general.css" />
+  <link rel="stylesheet" href="css/score_rev.css" />
+  <!-- includes local JS-->
+  <script src="js/general.js"></script>
+  <script src="js/toolbar.js"></script>
+  <script src="js/score_rev.js"></script>
+</head>
+
+<body>
+
+  {% include 'toolbar.html' %}
+  {% include 'general_body.html' %}
+
+  <h1>Check vandalism revision text</h1>
+
+  <div id="score-rev-div">
+    <div class="form-group">
+        <input type="text" class="form-control" id="rev-text" placeholder="Enter a revision text">
+        <small class="text-danger">
+              Missing a revision text
+        </small>
+    </div>
+    <button id="check-rev-bt" type="button" class="btn btn-primary">Check</button>
+  </div>
+
+  <div id="rev-result">
+      <h3>Score: <span id="score-result">0</span></h3>
+      <p class="description">The score is the probability that the revision text are vandalism</p>
+  </div>
+</body>
+</html>

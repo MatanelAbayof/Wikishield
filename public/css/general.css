@@ -1,0 +1,21 @@
+body {
+    width: 80%;
+    padding-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Varela Round', Arial, Helvetica, sans-serif;
+    background-image: url('../images/background.png');
+}
+
+@media screen and (max-width: 650px) {
+    .toolbar {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    .toolbar {
+        width: 20%;
+    }
+}

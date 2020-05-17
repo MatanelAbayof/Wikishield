@@ -1,0 +1,27 @@
+#verify-tbl {
+    display: none;
+    margin-top: 2rem;
+    background-color: rgb(255, 255, 255);
+    overflow-x: scroll;
+}
+
+.limited-text {
+    white-space: nowrap; 
+    overflow: hidden;
+    max-width: 8rem;
+    text-overflow: ellipsis; 
+}
+
+#verify-tbl td, #verify-tbl th {
+    text-align: center; 
+    vertical-align: middle;
+}
+
+#verify-tbl td button {
+    margin: 0.3rem;
+}
+
+#info-msg {
+    margin-top: 2rem;
+    display: none;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Verify revisions">
+  <meta name="keywords" content="verify,revision,Wikishield">
+  <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  {% include 'libs.html' %}
+  <title>Verify revisions</title>
+  <!-- includes local CSS-->
+  <link rel="stylesheet" href="css/general.css" />
+  <link rel="stylesheet" href="css/verify_revs.css" />
+  <!-- includes local JS-->
+  <script src="js/general.js"></script>
+  <script src="js/toolbar.js"></script>
+  <script src="js/verify_revs.js"></script>
+</head>
+
+<body>
+  {% include 'toolbar.html' %}
+  {% include 'general_body.html' %}
+  <h1>Verify revisions</h1>
+  <div id="verify-tbl">
+    <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Page title</th>
+            <th scope="col">Compare revisions</th>
+            <th scope="col">Datetime</th>
+            <th scope="col">Added words</th>
+            <th scope="col">Score</th>
+            <th scope="col">This is vandalism?</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+</div>
+
+  <div id="info-msg" class="alert alert-primary" role="alert"></div>
+
+<div id="confirm-verify" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to verify this revision?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary bt-verify" data-dismiss="modal">Verify</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="confirm-restore" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to restore this revision?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary bt-restore" data-dismiss="modal">Restore</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

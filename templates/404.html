@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Wikishield">
+  <meta name="keywords" content="Wikishield">
+  <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  
+  {% include 'libs.html' %}
+
+  <title>Page Not Found</title>
+
+  <!-- includes local CSS-->
+  <link rel="stylesheet" href="css/general.css" />
+
+</head>
+
+<body>
+  <h1>Wikishield</h1>
+  <br/>
+  <h2>Oops!</h2>
+  <h3>Looks like the page you were looking for doesn't exist</h3>
+  <img src= '../images/404-not-found.png'>
+  <p>Go back to<a href="{{ url_for('index.homepage') }}"> homepage</a></p>
+</body>
+</html>

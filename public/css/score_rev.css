@@ -1,0 +1,19 @@
+#rev-result {
+    padding-top: 1rem;
+}
+
+#score-result {
+    color: blue;
+}
+
+#score-rev-div .form-group {
+    padding-top: 1rem;
+}
+
+#rev-text + small {
+    display: none;
+}
+
+#rev-result .description {
+    color: grey;
+}

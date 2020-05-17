@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Wikishield">
+  <meta name="keywords" content="Wikishield">
+  <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {% include 'libs.html' %}
+  <title>Wikishield</title>
+
+  <!-- includes local CSS-->
+  <link rel="stylesheet" href="css/general.css" />
+  <link rel="stylesheet" href="css/homepage.css" />
+  <!-- includes local JS-->
+  <script src="js/general.js"></script>
+  <script src="js/toolbar.js"></script>
+</head>
+
+<body>
+
+  {% include 'toolbar.html' %}
+
+  <span class="title">Wikishield</span>
+
+  {% include 'general_body.html' %}
+
+  <a href="{{ url_for('index.verify_revs') }}"><button type="button" class="btn btn-primary btn-lg">Verify revisions</button></a>
+  <a href="{{ url_for('index.score_rev') }}"><button type="button" class="btn btn-secondary btn-lg">Test scoring</button></a>
+</body>
+</html>
