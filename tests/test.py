@@ -19,6 +19,11 @@ import os
 wd = os.path.expanduser("~/www/python/src")
 sys.path.append(wd)
 os.chdir(wd)
+
+import app
+app.app.run(debug=False, use_reloader=False)
+
+
 from db.wikimedia_connection import DBConnection as WD
 from db.connection_info import read_sql_user_name
 sql_user_name = read_sql_user_name()

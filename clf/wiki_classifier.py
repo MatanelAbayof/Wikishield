@@ -1,9 +1,6 @@
 import os
 
-try:
-    import pickle5 as pickle  # for python 3.7-
-except:
-    import pickle  # for python 3.8+
+import pickle
 
 import numpy as np
 from pymysql.connections import Connection
@@ -100,7 +97,7 @@ class WikiClassifier:
 
         obj = {'lang': self.lang, 'vectorizer': self.vectorizer, 'classifier': self.classifier}
         with open(file_path, 'wb') as pickle_file:
-            pickle.dump(obj, pickle_file, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump(obj, pickle_file, protocol=2)
 
     @classmethod
     def from_pickle_file(cls, file_path: str):
@@ -116,7 +113,7 @@ class WikiClassifier:
             raise IOError("pickle file at '{}' don't exists".format(file_path))
 
         with open(file_path, "rb") as pickle_file:
-            obj = pickle.load(pickle_file)
+            obj = pickle.load(pickle_file, protocol=2)
             clf = cls(obj['lang'])
             clf.vectorizer = obj['vectorizer']
             clf.classifier = obj['classifier']
