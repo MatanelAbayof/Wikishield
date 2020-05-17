@@ -113,7 +113,7 @@ class WikiClassifier:
             raise IOError("pickle file at '{}' don't exists".format(file_path))
 
         with open(file_path, "rb") as pickle_file:
-            obj = pickle.load(pickle_file, protocol=2)
+            obj = pickle.load(pickle_file)
             clf = cls(obj['lang'])
             clf.vectorizer = obj['vectorizer']
             clf.classifier = obj['classifier']
