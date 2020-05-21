@@ -84,4 +84,4 @@ def page_not_found(e):
 # ------------------------------------------ start server --------------------------------------------
 if __name__ == '__main__':
     print("Running Wikishield server...")
-    app.run(debug=False, use_reloader=False)
+    app.run(debug=True, use_reloader=False)
