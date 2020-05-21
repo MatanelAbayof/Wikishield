@@ -14,7 +14,8 @@ from jobs.add_revs_job import AddRevsJob
 
 app = Flask(__name__, static_url_path='', static_folder='public', template_folder="templates")
 
-app.config["SERVER_NAME"] = "tools.wmflabs.org:443/wikishield/"
+app.config["SERVER_NAME"] = "tools.wmflabs.org:443"
+app.config["APPLICATION_ROOT"] = "/wikishield/"
 
 app.register_blueprint(index, url_prefix="/")
 app.register_blueprint(api, url_prefix="/api")
