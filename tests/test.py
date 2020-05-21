@@ -13,12 +13,28 @@ conn = toolforge.connect('s54207__wikishield_p', **args)
 
 
 
+
+import pickle
+file_path = r"assets/clfs/en.pickle"
+with open(file_path, "rb") as pickle_file:
+    obj2 = pickle.load(pickle_file)
+    print(obj2)
+
+
+
+
 # run test from venv
 import sys
 import os
 wd = os.path.expanduser("~/www/python/src")
 sys.path.append(wd)
 os.chdir(wd)
+
+
+
+from jobs.learn_clfs_job import LearnClfsJob
+lcb = LearnClfsJob()
+lcb.start()
 
 import app
 app.app.run(debug=False, use_reloader=False)
