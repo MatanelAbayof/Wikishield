@@ -14,7 +14,7 @@ from jobs.add_revs_job import AddRevsJob
 
 app = Flask(__name__, static_url_path='', static_folder='public', template_folder="templates")
 
-app.config["APPLICATION_ROOT"] = "/wikishield"
+app.config["SERVER_NAME"] = "https://tools.wmflabs.org/wikishield/"
 
 app.register_blueprint(index, url_prefix="/")
 app.register_blueprint(api, url_prefix="/api")
@@ -84,4 +84,4 @@ def page_not_found(e):
 # ------------------------------------------ start server --------------------------------------------
 if __name__ == '__main__':
     print("Running Wikishield server...")
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=False) # TODO: change debug to False
