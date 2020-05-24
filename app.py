@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.append(os.getcwd())
+#sys.path.append(os.getcwd())
 from flask import Flask, render_template
 """
 from jobs.learn_clfs_job import LearnClfsJob
@@ -15,9 +15,9 @@ from lang.langs import Lang, LangsManager
 from jobs.add_revs_job import AddRevsJob
 """
 
-directory = os.path.dirname(os.path.realpath(__file__))
+#directory = os.path.dirname(os.path.realpath(__file__))
 
-app = Flask(__name__, static_url_path='') #, static_folder=os.path.join(directory, 'public'), template_folder=os.path.join(directory, 'templates'))
+app = Flask(__name__) #, static_url_path='') , static_folder=os.path.join(directory, 'public'), template_folder=os.path.join(directory, 'templates'))
 
 #app.config["SERVER_NAME"] = ""
 #app.config["APPLICATION_ROOT"] = ""
@@ -49,7 +49,7 @@ def a():
 
 
 # ----------------------------------------------------------------------------------------------------
-def learn_job():
+#def learn_job():
     """
     start job that learn data for all classifiers
     """
@@ -88,18 +88,19 @@ with app.app_context():
 
 """
 
+
 # ----------------------------------------------------------------------------------------------------
-@app.errorhandler(404)
-def page_not_found(e):
-    """
-    when page not found, this route raised
-    """
+#@app.errorhandler(404)
+#def page_not_found(e):
+    #"""
+    #when page not found, this route raised
+    #"""
 
     # note that we set the 404 status explicitly
-    return render_template('404.html'), 404
+#    return render_template('404.html'), 404
 
 
 # ------------------------------------------ start server --------------------------------------------
 if __name__ == '__main__':
     print("Running Wikishield server...")
-    app.run(debug=True, use_reloader=False) # TODO: change debug to False
+    app.run(debug=False, use_reloader=False) # TODO: change debug to False
