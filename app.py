@@ -12,10 +12,12 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from lang.langs import Lang, LangsManager
 from jobs.add_revs_job import AddRevsJob
 
-app = Flask(__name__, static_url_path='', static_folder='public', template_folder="templates")
+directory = os.path.dirname(os.path.realpath(__file__))
 
-app.config["SERVER_NAME"] = "tools.wmflabs.org:443"
-app.config["APPLICATION_ROOT"] = "/wikishield/"
+app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 'public'), template_folder=os.path.join(directory, 'templates'))
+
+#app.config["SERVER_NAME"] = ""
+#app.config["APPLICATION_ROOT"] = ""
 
 """
 app.register_blueprint(index, url_prefix="/")
