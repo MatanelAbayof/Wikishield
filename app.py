@@ -14,7 +14,7 @@ from jobs.add_revs_job import AddRevsJob
 
 directory = os.path.dirname(os.path.realpath(__file__))
 
-app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 'public'), template_folder=os.path.join(directory, 'templates'))
+app = Flask(__name__, static_url_path='') #, static_folder=os.path.join(directory, 'public'), template_folder=os.path.join(directory, 'templates'))
 
 #app.config["SERVER_NAME"] = ""
 #app.config["APPLICATION_ROOT"] = ""
@@ -23,6 +23,14 @@ app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 
 app.register_blueprint(index, url_prefix="/")
 app.register_blueprint(api, url_prefix="/api")
 """
+
+@app.route('/')
+def a():
+    """
+    homepage route
+    """
+
+    return "Works!"
 
 # ----------------------------------------------------------------------------------------------------
 def add_revs_job(lang: Lang):
