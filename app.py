@@ -17,9 +17,10 @@ app = Flask(__name__, static_url_path='', static_folder='public', template_folde
 app.config["SERVER_NAME"] = "tools.wmflabs.org:443"
 app.config["APPLICATION_ROOT"] = "/wikishield/"
 
+"""
 app.register_blueprint(index, url_prefix="/")
 app.register_blueprint(api, url_prefix="/api")
-
+"""
 
 # ----------------------------------------------------------------------------------------------------
 def add_revs_job(lang: Lang):
@@ -50,6 +51,7 @@ def learn_job():
 
 # ----------------------------------------------------------------------------------------------------
 
+"""
 scheduler = BackgroundScheduler()
 
 lm = LangsManager()
@@ -70,6 +72,8 @@ with app.app_context():
     print("preparing classifier...")
     app.config["classifiers"] = reload_classifiers()
     print("classifier is ready")
+
+"""
 
 # ----------------------------------------------------------------------------------------------------
 @app.errorhandler(404)
