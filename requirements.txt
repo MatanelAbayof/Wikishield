@@ -1,0 +1,12 @@
+ttictoc==0.3.1
+numpy
+matplotlib
+sklearn
+flask
+flask_babel
+apscheduler
+pymysql
+paramiko
+sshtunnel
+beautifulsoup4
+toolforge
