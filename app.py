@@ -2,8 +2,10 @@ import os
 import sys
 
 sys.path.append(os.getcwd())
-from jobs.learn_clfs_job import LearnClfsJob
 from flask import Flask, render_template
+"""
+from jobs.learn_clfs_job import LearnClfsJob
+
 from routes.api import api
 from routes.index import index
 from clf.classifier_manager import reload_classifiers
@@ -11,6 +13,7 @@ import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from lang.langs import Lang, LangsManager
 from jobs.add_revs_job import AddRevsJob
+"""
 
 directory = os.path.dirname(os.path.realpath(__file__))
 
@@ -33,16 +36,16 @@ def a():
     return "Works!"
 
 # ----------------------------------------------------------------------------------------------------
-def add_revs_job(lang: Lang):
+#def add_revs_job(lang: Lang):
     """
     start job that add revisions to database
 
     param lang: language
     """
 
-    print("add_revs_job()")
-    job = AddRevsJob(lang)
-    job.start()
+    #print("add_revs_job()")
+    #job = AddRevsJob(lang)
+    #job.start()
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -52,9 +55,9 @@ def learn_job():
     """
 
     # time.sleep(4)
-    print("learn_job()")
-    lcj = LearnClfsJob()
-    lcj.start()
+    #print("learn_job()")
+    #lcj = LearnClfsJob()
+    #lcj.start()
 
     # TODO: update **sync** clfs at app.config
 
