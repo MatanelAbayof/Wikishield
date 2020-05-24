@@ -20,34 +20,20 @@ app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 
 #app.config["SERVER_NAME"] = ""
 #app.config["APPLICATION_ROOT"] = ""
 
-"""
+
 app.register_blueprint(index, url_prefix="/")
+"""
 app.register_blueprint(api, url_prefix="/api")
 """
 
-@app.route('/')
-def a():
-    """
-    homepage route
-    """
-
-    return "Works!"
-
-@app.route('/a')
-def b():
-    """
-    homepage route
-    """
-
-    return "Works2!"
 
 # ----------------------------------------------------------------------------------------------------
 #def add_revs_job(lang: Lang):
-    """
-    start job that add revisions to database
+    #"""
+    #start job that add revisions to database
 
-    param lang: language
-    """
+    #param lang: language
+    #"""
 
     #print("add_revs_job()")
     #job = AddRevsJob(lang)
@@ -56,9 +42,9 @@ def b():
 
 # ----------------------------------------------------------------------------------------------------
 #def learn_job():
-    """
-    start job that learn data for all classifiers
-    """
+    #"""
+    #start job that learn data for all classifiers
+    #"""
 
     # time.sleep(4)
     #print("learn_job()")
@@ -85,6 +71,7 @@ scheduler.start()
 
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
+"""
 
 with app.app_context():
     # do this for learn
@@ -92,7 +79,6 @@ with app.app_context():
     app.config["classifiers"] = reload_classifiers()
     print("classifier is ready")
 
-"""
 
 
 # ----------------------------------------------------------------------------------------------------
