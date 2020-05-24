@@ -35,6 +35,14 @@ def a():
 
     return "Works!"
 
+@app.route('/wikishield')
+def b():
+    """
+    homepage route
+    """
+
+    return "Works2!"
+
 # ----------------------------------------------------------------------------------------------------
 #def add_revs_job(lang: Lang):
     """
