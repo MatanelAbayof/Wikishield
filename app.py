@@ -30,7 +30,6 @@ app.register_blueprint(api, url_prefix="/api")
 def add_headers(response):
     response.headers["Access-Control-Allow-Headers"] = "*"
     response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Content-Security-Policy"] = "default-src 'self' stackpath.bootstrapcdn.com"
     return response
 
 # ----------------------------------------------------------------------------------------------------
