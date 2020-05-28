@@ -22,10 +22,10 @@ app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 
 
 
 app.register_blueprint(index, url_prefix="/")
-"""
 app.register_blueprint(api, url_prefix="/api")
-"""
 
+
+# ----------------------------------------------------------------------------------------------------
 @app.after_request
 def add_headers(response):
     response.headers["Access-Control-Allow-Headers"] = "*"
@@ -33,35 +33,32 @@ def add_headers(response):
     return response
 
 # ----------------------------------------------------------------------------------------------------
-#def add_revs_job(lang: Lang):
-    #"""
-    #start job that add revisions to database
+def add_revs_job(lang: Lang):
+    """
+    start job that add revisions to database
 
-    #param lang: language
-    #"""
+    param lang: language
+    """
 
-    #print("add_revs_job()")
-    #job = AddRevsJob(lang)
-    #job.start()
+    job = AddRevsJob(lang)
+    job.start()
 
 
 # ----------------------------------------------------------------------------------------------------
-#def learn_job():
-    #"""
-    #start job that learn data for all classifiers
-    #"""
+def learn_job():
+    """
+    start job that learn data for all classifiers
+    """
 
-    # time.sleep(4)
-    #print("learn_job()")
-    #lcj = LearnClfsJob()
-    #lcj.start()
+    lcj = LearnClfsJob()
+    lcj.start()
 
     # TODO: update **sync** clfs at app.config
 
 
 # ----------------------------------------------------------------------------------------------------
 
-"""
+
 scheduler = BackgroundScheduler()
 
 lm = LangsManager()
@@ -76,7 +73,7 @@ scheduler.start()
 
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
-"""
+
 
 with app.app_context():
     # do this for learn
@@ -87,17 +84,17 @@ with app.app_context():
 
 
 # ----------------------------------------------------------------------------------------------------
-#@app.errorhandler(404)
-#def page_not_found(e):
-    #"""
-    #when page not found, this route raised
-    #"""
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    when page not found, this route raised
+    """
 
     # note that we set the 404 status explicitly
-#    return render_template('404.html'), 404
+    return render_template('404.html'), 404
 
 
 # ------------------------------------------ start server --------------------------------------------
 if __name__ == '__main__':
     print("Running Wikishield server...")
-    app.run(debug=False, use_reloader=False) # TODO: change debug to False
+    app.run(debug=False, use_reloader=False)
