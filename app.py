@@ -26,6 +26,11 @@ app.register_blueprint(index, url_prefix="/")
 app.register_blueprint(api, url_prefix="/api")
 """
 
+@app.after_request
+def add_headers(response):
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 # ----------------------------------------------------------------------------------------------------
 #def add_revs_job(lang: Lang):
