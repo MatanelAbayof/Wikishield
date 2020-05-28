@@ -24,8 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
         WikishieldApi.getRecentUnverifiedRevs(getLang(), numRevs)
         .then(fetchRevs => {
             revs = fetchRevs;
-
-            console.log(revs);
             
             // check if not found revisions and show info message
             if(revs.length === 0) {
@@ -70,12 +68,10 @@ window.addEventListener("DOMContentLoaded", () => {
     /** manage a revision 
      * param goodEditing to note if verify or restore */
     function manageRev(idx, rev, goodEditing) {
-        console.log("manageRev", rev);
         // call manage revision at API
         let revId = rev.id;
         WikishieldApi.manageRev(getLang(), revId, goodEditing)
         .then(_ => {
-            console.log("finish manageRev", rev);
             dom.delRow(idx);
             revs.splice(idx, 1); // remove revision from array
 
