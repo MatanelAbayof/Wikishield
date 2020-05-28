@@ -30,7 +30,7 @@ app.register_blueprint(api, url_prefix="/api")
 def add_headers(response):
     response.headers["Access-Control-Allow-Headers"] = "*"
     response.headers["Access-Control-Allow-Origin"] = "*"
-    del response.headers["Content-Security-Policy-Report-Only"]
+    response.headers["Content-Security-Policy-Report-Only"] = "default-src;"
     return response
 
 # ----------------------------------------------------------------------------------------------------
