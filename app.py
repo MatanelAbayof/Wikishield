@@ -22,7 +22,7 @@ app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 
 
 
 app.register_blueprint(index, url_prefix="/")
-app.register_blueprint(api, url_prefix="/api")
+#app.register_blueprint(api, url_prefix="/api")
 
 
 # ----------------------------------------------------------------------------------------------------
