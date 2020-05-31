@@ -8,6 +8,7 @@ from db.wikishield_connection import DBConnection as WS
 from db.wikishield_db import WikishieldDB
 from lang.langs import Lang, LangsManager
 from db.connection_info import read_sql_user_name
+from sklearn.exceptions import NotFittedError
 
 api = Blueprint('api', __name__)
 
@@ -116,7 +117,7 @@ def _get_wikishield_db(lang: Lang):
     return WikishieldDB(wikishield_conn.ctx, lang, sql_user_name)
 
 # ----------------------------------------------------------------------------------------------------
-@api.route('/score_rev', methods=['GET'])
+@api.route('/score_rev', methods=['GET']) #TODO: change to POST
 def score_rev():
     """
     score revision route
@@ -141,6 +142,9 @@ def score_rev():
     except ValueError as err:
         err_msg = str(err)
         return WikishieldApiResult.build_err_res(err_msg), 400
+    except Exception as ex: # TODO: use NotFittedError
+        err_msg = str(ex)
+        return WikishieldApiResult.build_err_res(err_msg), 400
 
 # ----------------------------------------------------------------------------------------------------
 @api.route('/get_revs', methods=['GET'])
@@ -155,8 +159,8 @@ def get_revs():
                 JSON with list of revisions
     """
     try:
-        num_revs = _try_parse_int(request.args.get("num_revs", default=50))
-        if num_revs < 0 or num_revs > 500:
+        num_revs = _try_parse_int(request.args.get("num_revs", default=50)) # TODO: use const
+        if num_revs < 0 or num_revs > 500: # TODO: use const
             raise ValueError("Illegal parameter range `num_revs`")
         lang_name = request.args.get("lang")
         lang = _get_lang(lang_name)
