@@ -50,3 +50,15 @@ class WikishieldApiResult:
             return obj.__str__()  # return error message
         else:
             return obj.__dict__()
+
+# ----------------------------------------------------------------------------------------------------
+@api.route('/<path:path>')
+def unknown_request(path: str):
+    """
+    route for all unknown requests in API
+
+    this return an error JSON response
+    """
+
+    err_msg = "Unknown request at path '{}'".format(path)
+    return WikishieldApiResult.build_err_res(err_msg), 404
