@@ -116,6 +116,33 @@ def _get_wikishield_db(lang: Lang):
     return WikishieldDB(wikishield_conn.ctx, lang, sql_user_name)
 
 # ----------------------------------------------------------------------------------------------------
+@api.route('/score_rev', methods=['GET'])
+def score_rev():
+    """
+    score revision route
+
+    request parameters:
+                `rev_text` - revision text
+                `lang` = language
+    response:
+                JSON with `scoreResult`
+    """
+
+    try:
+        rev_text = request.args.get("rev_text")
+        rev_text = rev_text.strip() if rev_text else False
+        if not rev_text:
+            return WikishieldApiResult.build_err_res("Missing `rev_text` parameter"), 400
+        lang_name = request.args.get("lang")
+        _get_lang(lang_name) # check language
+        wiki_classifier = app.config["classifiers"][lang_name]
+        score_result = wiki_classifier.score_rev(rev_text)
+        return WikishieldApiResult.build_good_res({'scoreResult': score_result})
+    except ValueError as err:
+        err_msg = str(err)
+        return WikishieldApiResult.build_err_res(err_msg), 400
+
+# ----------------------------------------------------------------------------------------------------
 @api.route('/get_revs', methods=['GET'])
 def get_revs():
     """

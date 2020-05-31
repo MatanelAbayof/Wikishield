@@ -77,11 +77,7 @@ atexit.register(lambda: scheduler.shutdown())
 
 with app.app_context():
     # do this for learn
-    print("preparing classifier...")
     app.config["classifiers"] = reload_classifiers()
-    print("classifier is ready")
-
-
 
 # ----------------------------------------------------------------------------------------------------
 @app.errorhandler(404)
