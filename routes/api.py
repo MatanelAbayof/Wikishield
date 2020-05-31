@@ -145,6 +145,36 @@ def score_rev():
     except Exception as ex: # TODO: use NotFittedError
         err_msg = str(ex)
         return WikishieldApiResult.build_err_res(err_msg), 400
+    # TODO: handle another exceptions
+
+# ----------------------------------------------------------------------------------------------------
+@api.route('/manage_rev', methods=['POST'])
+def manage_rev():
+    """
+    manage a revision at Wikipedia and update revision good editing in Wikishield table
+
+    request parameters:
+                `rev_id` - revision id to verify or restore
+                `lang` = language
+    response: /
+    """
+
+    try:
+        req_data = request.get_json()
+        rev_id = _try_parse_int(req_data['rev_id'])
+        if rev_id < 1:
+            raise ValueError("Parameter out of range `rev_id`={}".format(rev_id))
+        lang_name = req_data['lang']
+        lang = _get_lang(lang_name)
+        good_editing = _try_parse_bool(req_data['good_editing'])
+        wikishield_db = _get_wikishield_db(lang)
+        wikishield_db.update_rev_good_editing(rev_id, good_editing)
+        wikishield_db.commit()
+        return WikishieldApiResult.build_good_res({})
+    except ValueError as err:
+        err_msg = str(err)
+        return WikishieldApiResult.build_err_res(err_msg), 400
+    # TODO: handle another exceptions
 
 # ----------------------------------------------------------------------------------------------------
 @api.route('/get_revs', methods=['GET'])
@@ -170,6 +200,7 @@ def get_revs():
     except ValueError as err:
         err_msg = str(err)
         return WikishieldApiResult.build_err_res(err_msg), 400
+    # TODO: handle another exceptions
 
 # ----------------------------------------------------------------------------------------------------
 @api.route('/<path:path>')
