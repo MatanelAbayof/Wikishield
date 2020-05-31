@@ -58,7 +58,7 @@ def learn_job():
 
 # ----------------------------------------------------------------------------------------------------
 
-"""
+
 scheduler = BackgroundScheduler()
 
 lm = LangsManager()
@@ -73,7 +73,6 @@ scheduler.start()
 
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
-"""
 
 with app.app_context():
     # do this for learn
