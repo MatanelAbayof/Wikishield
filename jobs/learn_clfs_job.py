@@ -41,8 +41,7 @@ class LearnClfsJob(BaseJob):
         for lang_name in lm.langs_names:
             lang = lm.get_lang(lang_name)
             clf = WikiClassifier(lang, wikishield_conn.ctx)
-            limit = None
-            clf.learn(limit) # TODO: needs a full learning
+            clf.learn(limit=None)
             file_path = WikiClassifier.PICKLE_FOLDER_PATH + '/' + lang_name + '.pickle'
             clf.pickle_to_file(file_path)
 

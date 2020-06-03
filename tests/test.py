@@ -31,6 +31,33 @@ sys.path.append(wd)
 os.chdir(wd)
 
 
+from lang.langs import LangsManager, Lang
+from jobs.add_revs_job import AddRevsJob
+def add_revs_job(lang: Lang):
+    print("add_revs_job")
+    job = AddRevsJob(lang)
+    job.start()
+
+from apscheduler.schedulers.background import BackgroundScheduler
+scheduler = BackgroundScheduler()
+lm = LangsManager()
+for lang_name in lm.langs_names:
+    lang = lm.get_lang(lang_name)
+    add_revs_args = [lang]
+    scheduler.add_job(func=add_revs_job, args=add_revs_args, trigger="interval",
+                      seconds=1)  # 300 seconds = 5 minutes
+scheduler.start()
+scheduler.print_jobs()
+
+
+from lang.langs import LangsManager, Lang
+lm = LangsManager()
+lang = lm.get_lang('he')
+from clf.wiki_classifier import WikiClassifier
+file_path = WikiClassifier.PICKLE_FOLDER_PATH + '/' + lang.name + '.pickle'
+wiki_classifier = WikiClassifier.from_pickle_file(file_path)
+wiki_classifier.score_rev('גדגדג')
+
 
 from jobs.learn_clfs_job import LearnClfsJob
 lcb = LearnClfsJob()

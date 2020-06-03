@@ -1,9 +1,8 @@
 ttictoc==0.3.1
 numpy
 matplotlib
-sklearn
+scikit-learn==0.22
 flask
-flask_babel
 apscheduler
 pymysql
 paramiko
