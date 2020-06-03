@@ -12,6 +12,10 @@ from sklearn.exceptions import NotFittedError
 
 api = Blueprint('api', __name__)
 
+# TODO: close wikishield_db at all routes
+
+# TODO: define HTTP status codes here
+
 # ----------------------------------------------------------------------------------------------------
 class WikishieldApiResult:
     """

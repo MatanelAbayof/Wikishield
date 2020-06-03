@@ -13,7 +13,7 @@ class AddRevsJob(BaseJob):
     """
 
     # minimum bad score to add to database for human verify
-    _MIN_BAD_SCORE = 0.5
+    _MIN_BAD_SCORE = 0.0 # TODO: change this to 0.5+-
     # number of revisions to fetch
     _NUM_REVS = 50
     # scalar for extra part size to fetch by the formula: new_part_size = _EX_PART_SIZE*part_size

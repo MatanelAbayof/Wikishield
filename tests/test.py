@@ -36,6 +36,13 @@ from jobs.learn_clfs_job import LearnClfsJob
 lcb = LearnClfsJob()
 lcb.start()
 
+from lang.langs import LangsManager, Lang
+lm = LangsManager()
+lang = lm.get_lang('en')
+from jobs.add_revs_job import AddRevsJob
+arj = AddRevsJob(lang)
+arj.start()
+
 import app
 app.app.run(debug=False, use_reloader=False)
 
