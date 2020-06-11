@@ -1,8 +1,14 @@
 let chooseLangControl = null;
 
 window.addEventListener("DOMContentLoaded", () => {
+    this.fetch("langs.json")
+    .then(response => response.json())
+    .then( data => chooseLangControl.innerHTML = buildLangOptions(data.langs));
+
     chooseLangControl = document.getElementById("choose-lang");
     chooseLangControl.value = getLang();
+
+
 
     const changeLangEvent = new Event('changeLang');
 
@@ -25,4 +31,12 @@ function getLang() {
 /** set language */
 function setLang(lang) {
     $.cookie("lang", lang);
+}
+
+function buildLangOptions(langs){
+    let options = '';
+    for(var i = 0; i < langs.length; i++){
+        options += "<option value=" + langs[i].name + ">" + langs[i].language + "</option>";
+    }
+    return options;
 }

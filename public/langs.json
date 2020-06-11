@@ -2,12 +2,14 @@
     "langs": [
         {
             "name": "en",
+            "language": "English",
             "undo-rev": "undid revision",
             "extract-words-regex": "[a-zA-Z]{2,}",
             "extract-rev-regex": "undid revision (\\d+)"
         },
         {
             "name": "he",
+            "language": "עברית",
             "undo-rev": "ביטול גרסה",
             "extract-words-regex": "[a-zA-Z\u0590-\u05fe]{2,}",
             "extract-rev-regex": "ביטול גרסה (\\d+)",

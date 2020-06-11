@@ -16,6 +16,7 @@ class Lang:
         """
 
         self.name = lang_data["name"]
+        self.language = lang_data["language"]
         self.undo_rev = lang_data["undo-rev"]
         self.extract_words_regex = lang_data["extract-words-regex"]
         self.extract_rev_regex = lang_data["extract-rev-regex"]
