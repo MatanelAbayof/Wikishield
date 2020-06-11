@@ -33,7 +33,7 @@ class LangsManager:
     """
     decode data from Json
     """
-    LANGS_FILE_PATH = r"assets/langs.json"
+    LANGS_FILE_PATH = r"public/langs.json"
 
     def __init__(self):
         """
