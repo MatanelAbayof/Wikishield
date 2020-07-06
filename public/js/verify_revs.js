@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
     function loadRevs() {
         // clean last revisions
         dom.clearRevsTbl();
-        DomManager.hideElement(this.verifyTbl);
+        DomManager.hideElement(dom.verifyTbl);
         DomManager.hideElement(dom.infoMsg);
         dom.showRefreshIcon();
 
@@ -211,7 +211,7 @@ class DomManager extends BaseDomManager {
     }
 
     hideRefreshIcon() {
-        DomManager.showElement(this.verifyTbl);
+        DomManager.hideElement(this.refreshIcon);
     }
 }
 
