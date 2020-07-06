@@ -13,5 +13,6 @@
 		"define": true,
 		"jQuery": true,
 		"require": true
-	}
+	},
+	"esversion": 6
 }

@@ -157,7 +157,7 @@ class DomManager extends BaseDomManager {
         let lang = getLang();
         let pageLink = encodeURI(`https://${lang}.wikipedia.org/wiki/${pageTitle}`);
         let compareLink = encodeURI(`https://${lang}.wikipedia.org/w/index.php?title=${pageTitle}&type=revision&diff=${rev.wiki_id}&oldid=${rev.parent_id}`);
-        let revDate = moment(rev.timestamp, "YYYY-MM-DD HH:mm:ss.S").fromNow();
+        let revDate = moment.utc(rev.timestamp, "YYYY-MM-DD HH:mm:ss.S").fromNow();
 
         
         let revScore = (rev.score != null) ? rev.score.toFixed(2) : 1;
