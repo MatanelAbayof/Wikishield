@@ -1,14 +1,13 @@
 let chooseLangControl = null;
 
 window.addEventListener("DOMContentLoaded", () => {
-    this.fetch("langs.json")
-    .then(response => response.json())
-    .then( data => chooseLangControl.innerHTML = buildLangOptions(data.langs));
 
     chooseLangControl = document.getElementById("choose-lang");
     chooseLangControl.value = getLang();
 
-
+     fetch("langs.json")
+    .then(response => response.json())
+    .then(data => chooseLangControl.innerHTML = buildLangOptions(data.langs));
 
     const changeLangEvent = new Event('changeLang');
 

@@ -16,15 +16,15 @@ window.addEventListener("DOMContentLoaded", () => {
     function loadRevs() {
         // clean last revisions
         dom.clearRevsTbl();
-        DomManager.hideElement(dom.verifyTbl);
+        DomManager.hideElement(this.verifyTbl);
         DomManager.hideElement(dom.infoMsg);
-
-        // TODO: show refresh icon
+        dom.showRefreshIcon();
 
         WikishieldApi.getRecentUnverifiedRevs(getLang(), numRevs)
         .then(fetchRevs => {
             revs = fetchRevs;
-            
+
+            dom.hideRefreshIcon();
             // check if not found revisions and show info message
             if(revs.length === 0) {
                 dom.showInfoMsg(DomManager.NOT_FOUND_REVS_INF_MSG);
@@ -38,7 +38,6 @@ window.addEventListener("DOMContentLoaded", () => {
                     const row = bt.parentNode.parentNode;
                     let idx = dom.findRowIdx(row);
                     let rev = revs[idx];
-
 
                     dom.listenConfirmVerifyBtClick(() => manageRev(idx, rev, 1)); // 1 for verify
                     dom.showConfirmVerifyDialog();
@@ -106,6 +105,7 @@ class DomManager extends BaseDomManager {
         this.$confirmVerifyBt = $("button.bt-verify", this.$confirmVerify);
         this.$confirmRestore = $("#confirm-restore");
         this.$confirmRestoreBt = $("button.bt-restore", this.$confirmRestore);
+        this.refreshIcon = document.getElementById("refresh-icon");
     }
 
     /** show info message */
@@ -204,6 +204,14 @@ class DomManager extends BaseDomManager {
     listenConfirmRestoreBtClick(onClick) {
         this.$confirmRestoreBt.unbind();
         this.$confirmRestoreBt.click((e) => onClick());
+    }
+
+    showRefreshIcon() {
+        DomManager.showElement(this.refreshIcon);
+    }
+
+    hideRefreshIcon() {
+        DomManager.showElement(this.verifyTbl);
     }
 }
 
