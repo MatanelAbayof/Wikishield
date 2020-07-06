@@ -211,7 +211,7 @@ class DomManager extends BaseDomManager {
     }
 
     hideRefreshIcon() {
-        DomManager.hideElement(this.refreshIcon);
+        this.refreshIcon.setAttribute('style', 'display: none !important');
     }
 }
 
