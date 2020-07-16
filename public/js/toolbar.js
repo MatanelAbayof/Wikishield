@@ -3,20 +3,23 @@ let chooseLangControl = null;
 window.addEventListener("DOMContentLoaded", () => {
 
     chooseLangControl = document.getElementById("choose-lang");
-    chooseLangControl.value = getLang();
+
 
      fetch("langs.json")
     .then(response => response.json())
-    .then(data => chooseLangControl.innerHTML = buildLangOptions(data.langs));
+    .then(data => {
+        chooseLangControl.innerHTML = buildLangOptions(data.langs);
+        chooseLangControl.value = getLang();
 
-    const changeLangEvent = new Event('changeLang');
+        const changeLangEvent = new Event('changeLang');
 
-    chooseLangControl.addEventListener("change", () => {
-        let lang = chooseLangControl.value;
-        setLang(lang);
-        // call listeners to lang change
-        chooseLangControl.dispatchEvent(changeLangEvent);
-    });
+        chooseLangControl.addEventListener("change", () => {
+            let lang = chooseLangControl.value;
+            setLang(lang);
+            // call listeners to lang change
+            chooseLangControl.dispatchEvent(changeLangEvent);
+        });
+    }).catch(errMsg => console.error('Cannot load languages. error message = ', errMsg));
 });
 
 /** get language */
@@ -34,8 +37,8 @@ function setLang(lang) {
 
 function buildLangOptions(langs){
     let options = '';
-    for(var i = 0; i < langs.length; i++){
-        options += "<option value=" + langs[i].name + ">" + langs[i].language + "</option>";
+    for(let i = 0; i < langs.length; i++){
+        options += `<option value="${langs[i].name}">${langs[i].language}</option>`;
     }
     return options;
 }
