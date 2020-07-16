@@ -3,6 +3,9 @@ span.title {
     font-size: xx-large;
 }
 
+#rep-github {
+    margin-top: 0.5rem;
+}
 
 button {
     margin-top: 1rem;
