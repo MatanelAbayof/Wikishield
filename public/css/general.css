@@ -1,5 +1,4 @@
 body {
-    width: 80%;
     padding-top: 2rem;
     margin-left: auto;
     margin-right: auto;
@@ -9,23 +8,31 @@ body {
 }
 
 div.toolbar {
-    display: inline;
     width: 100%;
     text-align: start;
 }
 
 #homepage-icon {
     width: 30%;
-    margin-right: 0.5rem;
+    min-width: 100px;
+    margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 650px) {
+    body {
+        width: 95%;
+    }
+
     #choose-lang {
         width: 40%;
     }
 }
 
 @media screen and (min-width: 650px) {
+    body {
+        width: 85%;
+    }
+
     #choose-lang {
         width: 20%;
     }
