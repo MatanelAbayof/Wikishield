@@ -3,6 +3,7 @@ from ttictoc import TicToc
 import db.connections_manager as conn_mng
 from utils.algorithms import extract_added_words
 from clf.wiki_classifier import WikiClassifier
+from clf.classifier_manager import reload_classifier
 from lang.langs import Lang
 from jobs.base_job import BaseJob
 
@@ -51,8 +52,7 @@ class AddRevsJob(BaseJob):
         t.tic()
 
         local_conn, wiki_conn = conn_mng.open_connections(self.lang)
-        file_path = WikiClassifier.PICKLE_FOLDER_PATH + '/' + self.lang.name + '.pickle'
-        wiki_classifier = WikiClassifier.from_pickle_file(file_path)
+        wiki_classifier = reload_classifier(self.lang.name)
 
         wikimedia_db, wikishield_db, wikimedia_api = conn_mng.init_sources(wiki_conn.ctx, local_conn.ctx, self.lang)
         

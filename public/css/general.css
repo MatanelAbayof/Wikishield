@@ -8,6 +8,15 @@ body {
     background-image: url('../images/background.png');
 }
 
+.toolbar {
+    display: inline-block;
+}
+
+#homepage-icon {
+    width: 30%;
+    margin-right: 0.5rem;
+}
+
 @media screen and (max-width: 650px) {
     .toolbar {
         width: 40%;
