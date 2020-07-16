@@ -8,9 +8,16 @@ from db.wikishield_connection import DBConnection as WS
 from db.wikishield_db import WikishieldDB
 from lang.langs import Lang, LangsManager
 from db.connection_info import read_sql_user_name
+from clf.classifier_manager import reload_classifier
 from sklearn.exceptions import NotFittedError
 
 api = Blueprint('api', __name__)
+
+# default number of revisions to fetch
+_DEF_NUM_OF_REVS = 50
+# maximum number of revisions to fetch
+_MAX_NUM_OF_REVS = 500
+
 
 # TODO: close wikishield_db at all routes
 
@@ -55,6 +62,7 @@ class WikishieldApiResult:
             return obj.__str__()  # return error message
         else:
             return obj.__dict__()
+
 
 # ----------------------------------------------------------------------------------------------------
 def _get_lang(lang_name: str):
@@ -114,14 +122,14 @@ def _get_wikishield_db(lang: Lang):
     return Wikishield database
     """
 
-
     sql_user_name = read_sql_user_name()
     wikishield_conn = WS(sql_user_name)
     wikishield_conn.start()
     return WikishieldDB(wikishield_conn.ctx, lang, sql_user_name)
 
+
 # ----------------------------------------------------------------------------------------------------
-@api.route('/score_rev', methods=['GET']) #TODO: change to POST
+@api.route('/score_rev', methods=['GET'])  # TODO: change to POST
 def score_rev():
     """
     score revision route
@@ -139,17 +147,14 @@ def score_rev():
         if not rev_text:
             return WikishieldApiResult.build_err_res("Missing `rev_text` parameter"), 400
         lang_name = request.args.get("lang")
-        _get_lang(lang_name) # check language
-        wiki_classifier = app.config["classifiers"][lang_name]
+        _get_lang(lang_name)  # check language
+        wiki_classifier = reload_classifier(lang_name)
         score_result = wiki_classifier.score_rev(rev_text)
         return WikishieldApiResult.build_good_res({'scoreResult': score_result})
-    except ValueError as err:
-        err_msg = str(err)
-        return WikishieldApiResult.build_err_res(err_msg), 400
-    except Exception as ex: # TODO: use NotFittedError
+    except Exception as ex:
         err_msg = str(ex)
         return WikishieldApiResult.build_err_res(err_msg), 400
-    # TODO: handle another exceptions
+
 
 # ----------------------------------------------------------------------------------------------------
 @api.route('/manage_rev', methods=['POST'])
@@ -175,10 +180,10 @@ def manage_rev():
         wikishield_db.update_rev_good_editing(rev_id, good_editing)
         wikishield_db.commit()
         return WikishieldApiResult.build_good_res({})
-    except ValueError as err:
-        err_msg = str(err)
+    except Exception as ex:
+        err_msg = str(ex)
         return WikishieldApiResult.build_err_res(err_msg), 400
-    # TODO: handle another exceptions
+
 
 # ----------------------------------------------------------------------------------------------------
 @api.route('/get_revs', methods=['GET'])
@@ -193,18 +198,18 @@ def get_revs():
                 JSON with list of revisions
     """
     try:
-        num_revs = _try_parse_int(request.args.get("num_revs", default=50)) # TODO: use const
-        if num_revs < 0 or num_revs > 500: # TODO: use const
+        num_revs = _try_parse_int(request.args.get("num_revs", default=_DEF_NUM_OF_REVS))
+        if num_revs < 0 or num_revs > _MAX_NUM_OF_REVS:
             raise ValueError("Illegal parameter range `num_revs`")
         lang_name = request.args.get("lang")
         lang = _get_lang(lang_name)
         wikishield_db = _get_wikishield_db(lang)
         revs = wikishield_db.fetch_recent_unverified_revs(num_revs)
         return WikishieldApiResult.build_good_res({'revs': revs})
-    except ValueError as err:
-        err_msg = str(err)
+    except Exception as ex:
+        err_msg = str(ex)
         return WikishieldApiResult.build_err_res(err_msg), 400
-    # TODO: handle another exceptions
+
 
 # ----------------------------------------------------------------------------------------------------
 @api.route('/<path:path>')

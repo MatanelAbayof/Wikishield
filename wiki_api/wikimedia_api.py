@@ -40,7 +40,7 @@ class WikimediaApi(BaseApi):
         if ignore_err_codes is None:
             ignore_err_codes = []
         try:
-            response_json = self.fetch_json(params)  # TODO: add user agant & token of Wiki to request
+            response_json = self.fetch_json(params)  # TODO: add user agent & token of Wiki to request
             # check if was error in Wikimedia response
             if "error" in response_json:
                 err_info = response_json["error"]
@@ -61,7 +61,7 @@ class WikimediaApi(BaseApi):
 
         param parent_rev_id: source revision id
 
-        return tuple of content differents and page title
+        return tuple of content differences and page title
         """
 
         req_params = {"action": "compare", "fromrev": parent_rev_id, "torev": rev_id,

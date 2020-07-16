@@ -12,13 +12,10 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from lang.langs import Lang, LangsManager
 from jobs.add_revs_job import AddRevsJob
 
-
 directory = os.path.dirname(os.path.realpath(__file__))
 
-app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 'public'), template_folder=os.path.join(directory, 'templates'))
-
-#app.config["SERVER_NAME"] = ""
-#app.config["APPLICATION_ROOT"] = ""
+app = Flask(__name__, static_url_path='', static_folder=os.path.join(directory, 'public'),
+            template_folder=os.path.join(directory, 'templates'))
 
 
 app.register_blueprint(index, url_prefix="/")
@@ -32,12 +29,13 @@ def add_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
+
 # ----------------------------------------------------------------------------------------------------
 def add_revs_job(lang: Lang):
     """
     start job that add revisions to database
 
-    param lang: language
+    :param lang: language
     """
 
     job = AddRevsJob(lang)
@@ -52,8 +50,6 @@ def learn_job():
 
     lcj = LearnClfsJob()
     lcj.start()
-
-    # TODO: update **sync** clfs at app.config
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -74,9 +70,6 @@ scheduler.start()
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
 
-with app.app_context():
-    # do this for learn
-    app.config["classifiers"] = reload_classifiers()
 
 # ----------------------------------------------------------------------------------------------------
 @app.errorhandler(404)

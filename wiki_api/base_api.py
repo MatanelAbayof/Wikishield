@@ -37,9 +37,9 @@ class BaseApi(ABC):
 
         the request has timeout of 10 seconds
 
-        param params: list of parameters to send
+        :param params: list of parameters to send
 
-        return JSON result
+        :return JSON result
         """
 
         tries = 0
