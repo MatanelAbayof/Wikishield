@@ -5,6 +5,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     dom.revIn.addEventListener("input", () => dom.hideErrMsg());
 
     dom.checkRevBt.addEventListener("click", () => {
+        dom.checkRevBt.disabled = true;
+        dom.scoreRes.innerText = "";
+
         let revText = dom.revIn.value.trim();
 
         // TODO: show progress bar while fetch and disable input and button. for test, use wait(2000) Promise.
@@ -14,10 +17,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         .then(scoreResult => {
                 let badScore = scoreResult[0];
                 dom.scoreRes.innerText = badScore.toFixed(3);
+                dom.checkRevBt.disabled = false;
         })
         .catch(errMsg => {
             dom.errMsgInput.textContent = errMsg;
             DomManager.showElement(dom.errMsgInput);
+            dom.checkRevBt.disabled = false;
             //dom.showErrDialog(errMsg);
         });
     });
