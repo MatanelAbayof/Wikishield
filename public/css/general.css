@@ -8,8 +8,10 @@ body {
     background-image: url('../images/background.png');
 }
 
-.toolbar {
-    display: inline-block;
+div.toolbar {
+    display: inline;
+    width: 100%;
+    text-align: start;
 }
 
 #homepage-icon {
@@ -18,13 +20,13 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-    .toolbar {
+    #choose-lang {
         width: 40%;
     }
 }
 
 @media screen and (min-width: 650px) {
-    .toolbar {
+    #choose-lang {
         width: 20%;
     }
 }
