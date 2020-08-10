@@ -46,3 +46,7 @@ Wikishield uses machine learning to detect if revision is vandalism or not
 - **Can i run Wikishield on local computer?**
     - No. Wikishield must be run with [toolforge](https://wikitech.wikimedia.org/wiki/Portal:Toolforge).
     however, Wikishield have another repository for testing on local pc
+    
+
+## License
+This project is licensed under the terms of the [GNU General Public License v3.0](./LICENSE).
