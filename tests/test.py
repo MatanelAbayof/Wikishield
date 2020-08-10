@@ -30,6 +30,8 @@ wd = os.path.expanduser("~/www/python/src")
 sys.path.append(wd)
 os.chdir(wd)
 
+from flask import Flask, render_template
+
 
 from lang.langs import LangsManager, Lang
 from jobs.add_revs_job import AddRevsJob
