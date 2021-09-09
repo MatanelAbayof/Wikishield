@@ -11,7 +11,7 @@
 </div>
 
 ## Introduction
-- Wikishield is a bot that check in real time if revisions are vandalism or not
+- Wikishield is a bot that check in real time if revisions on Wikipedia are vandalism or not
 
 - Wikishield contains [website](https://wikishield.toolforge.org/) for checkers
 
